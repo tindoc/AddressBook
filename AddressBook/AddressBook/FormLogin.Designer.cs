@@ -1,6 +1,6 @@
 ﻿namespace AddressBook
 {
-    partial class LogIn
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.

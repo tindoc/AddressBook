@@ -12,9 +12,9 @@ using System.Configuration;
 
 namespace AddressBook
 {
-    public partial class LogIn : Form
+    public partial class FormLogin : Form
     {
-        public LogIn()
+        public FormLogin()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace AddressBook
                 txtUserName.Focus();
                 return;
             }
-            //string connString = @"";
+
             string connString = DBHelper.connString;
             string sqlStr = string.Format("select count(*) from [User] where UserName = '{0}' and Password = '{1}'",
                 txtUserName.Text.Trim(),txtUserPassword.Text.Trim());   // 这是不使用参数构建 SQL 语句。其中，User 是 数据库的保留字要加方括号
@@ -40,7 +40,12 @@ namespace AddressBook
                 int result = Convert.ToInt32(cmd.ExecuteScalar());   // SqlCommand.ExecuteScalar 执行查询，返回查询结果中第一行第一列的值，但类型为 object
                 if (result == 1)
                 {
-                    MessageBox.Show("登录成功！");
+                    //MessageBox.Show("登录成功！");
+                    UserHelper.userName = txtUserName.Text.Trim();
+                    UserHelper.password = txtUserPassword.Text.Trim();
+                    this.Hide();
+                    FormMain f = new FormMain();  // 跳转到主窗体
+                    f.Show();
                 }
                 else
                 {
