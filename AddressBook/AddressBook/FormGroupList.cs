@@ -117,19 +117,7 @@ namespace AddressBook
 
         private void dgvGroupList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int id = 0;
-            try
-            {
-                id = (int)dgvGroupList.CurrentRow.Cells[0].Value;
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show("请双击有效数据行！");
-                return;
-            }
-            FormGroupDetail f = new FormGroupDetail(id);
-            f.ShowDialog();
-            Fill();
+            btnModify_Click(null, null);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

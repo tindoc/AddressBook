@@ -11,5 +11,22 @@ ToolStrip 工具栏上添加的是 button ，根据控件名称 tsbtnxxxx 得知
 
 可以使用类内 static 成员来保存程序整个运行期间不变的变量，类 DBHelper 就是如此
 
+# Task 5
 
+ComboBox 的 DropDownStyle 属性设置为 DropDownList 之后只能在组合框中选取
+
+
+
+# 优化
+
+- 每次写数据库的连接很麻烦
+- 写弹出消息框也较为麻烦
+- 将是否选中 DataGridView 中行的判断封装
+- FormContactAdd 和 FormContactDetail 相同函数 FillGroup 和 Check，提取
+
+
+
+# 书籍勘误
+
+- P46 第四行：*（1）定义FormContactList窗体的私有字段。* 应为 *（1）定义FormContact**Detail**窗体的私有字段。*
 

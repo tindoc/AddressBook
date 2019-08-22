@@ -123,6 +123,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserHelper.cs" />
+    <Compile Include="Utility.cs" />
+    <EmbeddedResource Include="FormContactAdd.resx">
+      <DependentUpon>FormContactAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContactDetail.resx">
+      <DependentUpon>FormContactDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContactList.resx">
+      <DependentUpon>FormContactList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGroupList.resx">
       <DependentUpon>FormGroupList.cs</DependentUpon>
     </EmbeddedResource>
