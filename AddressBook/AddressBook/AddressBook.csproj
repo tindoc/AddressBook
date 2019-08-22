@@ -65,11 +65,11 @@
     <Compile Include="FormContactDetail.Designer.cs">
       <DependentUpon>FormContactDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormContactList.cs">
+    <Compile Include="FormGroupList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormContactList.Designer.cs">
-      <DependentUpon>FormContactList.cs</DependentUpon>
+    <Compile Include="FormGroupList.Designer.cs">
+      <DependentUpon>FormGroupList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDB.cs">
       <SubType>Form</SubType>
@@ -89,11 +89,11 @@
     <Compile Include="FormGroupDetail.Designer.cs">
       <DependentUpon>FormGroupDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGroupList.cs">
+    <Compile Include="FormContactList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGroupList.Designer.cs">
-      <DependentUpon>FormGroupList.cs</DependentUpon>
+    <Compile Include="FormContactList.Designer.cs">
+      <DependentUpon>FormContactList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -123,6 +123,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserHelper.cs" />
+    <EmbeddedResource Include="FormGroupList.resx">
+      <DependentUpon>FormGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGroupAdd.resx">
+      <DependentUpon>FormGroupAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGroupDetail.resx">
+      <DependentUpon>FormGroupDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

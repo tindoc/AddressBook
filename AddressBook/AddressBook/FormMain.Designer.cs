@@ -102,14 +102,14 @@
             // tsmiGroupList
             // 
             this.tsmiGroupList.Name = "tsmiGroupList";
-            this.tsmiGroupList.Size = new System.Drawing.Size(152, 22);
+            this.tsmiGroupList.Size = new System.Drawing.Size(124, 22);
             this.tsmiGroupList.Text = "分组列表";
             this.tsmiGroupList.Click += new System.EventHandler(this.tsmiGroupList_Click);
             // 
             // tsmiGroupAdd
             // 
             this.tsmiGroupAdd.Name = "tsmiGroupAdd";
-            this.tsmiGroupAdd.Size = new System.Drawing.Size(152, 22);
+            this.tsmiGroupAdd.Size = new System.Drawing.Size(124, 22);
             this.tsmiGroupAdd.Text = "增加分组";
             this.tsmiGroupAdd.Click += new System.EventHandler(this.tsmiGroupAdd_Click);
             // 
@@ -147,7 +147,7 @@
             // tsmiAbout
             // 
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(100, 22);
             this.tsmiAbout.Text = "关于";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
@@ -179,7 +179,7 @@
             this.tsbtnGroupList.Name = "tsbtnGroupList";
             this.tsbtnGroupList.Size = new System.Drawing.Size(76, 22);
             this.tsbtnGroupList.Text = "分组列表";
-            this.tsbtnGroupList.Click += new System.EventHandler(this.tsmiContactList_Click);
+            this.tsbtnGroupList.Click += new System.EventHandler(this.tsmiGroupList_Click);
             // 
             // tsbtnPwd
             // 

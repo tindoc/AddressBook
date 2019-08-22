@@ -10,3 +10,6 @@
 ToolStrip 工具栏上添加的是 button ，根据控件名称 tsbtnxxxx 得知
 
 可以使用类内 static 成员来保存程序整个运行期间不变的变量，类 DBHelper 就是如此
+
+
+

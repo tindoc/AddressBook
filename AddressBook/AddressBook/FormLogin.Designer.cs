@@ -41,7 +41,7 @@
             this.btnLogin.Location = new System.Drawing.Point(63, 133);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 0;
+            this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -51,7 +51,7 @@
             this.btnCancel.Location = new System.Drawing.Point(163, 133);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -62,7 +62,7 @@
             this.label1.Location = new System.Drawing.Point(61, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 2;
+            this.label1.TabIndex = 4;
             this.label1.Text = "用户名";
             // 
             // label2
@@ -71,7 +71,7 @@
             this.label2.Location = new System.Drawing.Point(61, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 5;
             this.label2.Text = "登录密码";
             // 
             // txtUserName
@@ -79,7 +79,7 @@
             this.txtUserName.Location = new System.Drawing.Point(120, 33);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(118, 21);
-            this.txtUserName.TabIndex = 4;
+            this.txtUserName.TabIndex = 0;
             // 
             // txtUserPassword
             // 
@@ -87,9 +87,9 @@
             this.txtUserPassword.Name = "txtUserPassword";
             this.txtUserPassword.PasswordChar = '*';
             this.txtUserPassword.Size = new System.Drawing.Size(118, 21);
-            this.txtUserPassword.TabIndex = 5;
+            this.txtUserPassword.TabIndex = 1;
             // 
-            // LogIn
+            // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
-            this.Name = "LogIn";
+            this.Name = "FormLogin";
             this.Text = "用户登录";
             this.ResumeLayout(false);
             this.PerformLayout();
