@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AddressBookSetup", "AddressBookSetup\AddressBookSetup.vdproj", "{3084F768-340E-441D-9EE4-FDDDB8163F0C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3084F768-340E-441D-9EE4-FDDDB8163F0C}.Debug|Default.ActiveCfg = Debug
+		{3084F768-340E-441D-9EE4-FDDDB8163F0C}.Debug|Default.Build.0 = Debug
+		{3084F768-340E-441D-9EE4-FDDDB8163F0C}.Release|Default.ActiveCfg = Release
+		{3084F768-340E-441D-9EE4-FDDDB8163F0C}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
