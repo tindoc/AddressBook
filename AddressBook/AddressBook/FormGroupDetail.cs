@@ -30,10 +30,11 @@ namespace AddressBook
         private void FormGroupDetail_Load(object sender, EventArgs e)
         {
             txtId.Text = id.ToString();
-            string sqlstr = string.Format("select * from ContactGroup where id = '{0}'", id);
+            string sqlstr = "select * from ContactGroup where id = @id";
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
                 SqlCommand cmd = new SqlCommand(sqlstr, conn);
+                cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -53,9 +54,11 @@ namespace AddressBook
             string memo = txtGroupMemo.Text.Trim();
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                string sql = string.Format("update ContactGroup set GroupName='{0}',Memo='{1}' where Id='{2}'",
-                    groupName, memo, id);
+                string sql = "update ContactGroup set GroupName=@GroupName,Memo=@Memo where Id=@id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@GroupName", groupName);
+                cmd.Parameters.AddWithValue("@Memo", memo);
+                cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
                 int n = Convert.ToInt32(cmd.ExecuteNonQuery());
                 if (n != 1)

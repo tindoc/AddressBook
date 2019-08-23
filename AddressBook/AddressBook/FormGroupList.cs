@@ -68,8 +68,9 @@ namespace AddressBook
             // 若分组下存在联系人信息，不允许删除
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                string sql = string.Format("select count(*) from Contact where GroupId = '{0}'", id);
+                string sql = "select count(*) from Contact where GroupId = @id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
                 int result = Convert.ToInt32(cmd.ExecuteScalar());
                 if (result >= 1)
@@ -81,8 +82,9 @@ namespace AddressBook
 
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                string sql = string.Format("delete from ContactGroup where Id = '{0}'", id);
+                string sql = "delete from ContactGroup where Id = @id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
                 int result = Convert.ToInt32(cmd.ExecuteNonQuery());
                 if (result != 1)

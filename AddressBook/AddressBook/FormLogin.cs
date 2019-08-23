@@ -57,37 +57,15 @@ namespace AddressBook
                 #endregion
 
                 #region 使用 SqlDataReader 对象来实现登录 */
-                //sqlStr = string.Format("select * from [User] where UserName = '{0}' and Password = '{1}'",
-                //txtUserName.Text.Trim(), txtUserPassword.Text.Trim());  // 注意 sql 的修改
-                //SqlCommand cmd = new SqlCommand(sqlStr, conn);
-                //conn.Open();
-
-                //SqlDataReader sdr = cmd.ExecuteReader();
-                //if (sdr.Read())
-                //{
-                //    //MessageBox.Show("登录成功！");
-                //    UserHelper.userName = txtUserName.Text.Trim();
-                //    UserHelper.password = txtUserPassword.Text.Trim();
-                //    this.Hide();
-                //    FormMain f = new FormMain();  // 跳转到主窗体
-                //    f.Show();
-                //}
-                //else
-                //{
-                //    MessageBox.Show("用户名或密码错误，请重新输入！", "错误");
-                //    txtUserName.Text = txtUserPassword.Text = "";
-                //    txtUserName.Focus();
-                //}
-                //sdr.Close();
-                #endregion
-
-                #region 使用SqlDataAdapter 对象来实现登录
-                sqlStr = string.Format("select * from [User] where UserName = '{0}' and Password = '{1}'",
+                sqlStr = string.Format("select * from [User] where UserName = @UserName and Password = @Password",
                 txtUserName.Text.Trim(), txtUserPassword.Text.Trim());  // 注意 sql 的修改
-                SqlDataAdapter da = new SqlDataAdapter(sqlStr, conn);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                if (ds.Tables[0].Rows.Count != 0)
+                SqlCommand cmd = new SqlCommand(sqlStr, conn);
+                cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+                cmd.Parameters.AddWithValue("@Password", txtUserPassword.Text.Trim());
+                conn.Open();
+
+                SqlDataReader sdr = cmd.ExecuteReader();
+                if (sdr.Read())
                 {
                     //MessageBox.Show("登录成功！");
                     UserHelper.userName = txtUserName.Text.Trim();
@@ -102,6 +80,30 @@ namespace AddressBook
                     txtUserName.Text = txtUserPassword.Text = "";
                     txtUserName.Focus();
                 }
+                sdr.Close();
+                #endregion
+
+                #region 使用SqlDataAdapter 对象来实现登录
+                //sqlStr = string.Format("select * from [User] where UserName = '{0}' and Password = '{1}'",
+                //txtUserName.Text.Trim(), txtUserPassword.Text.Trim());  // 注意 sql 的修改
+                //SqlDataAdapter da = new SqlDataAdapter(sqlStr, conn);
+                //DataSet ds = new DataSet();
+                //da.Fill(ds);
+                //if (ds.Tables[0].Rows.Count != 0)
+                //{
+                //    //MessageBox.Show("登录成功！");
+                //    UserHelper.userName = txtUserName.Text.Trim();
+                //    UserHelper.password = txtUserPassword.Text.Trim();
+                //    this.Hide();
+                //    FormMain f = new FormMain();  // 跳转到主窗体
+                //    f.Show();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("用户名或密码错误，请重新输入！", "错误");
+                //    txtUserName.Text = txtUserPassword.Text = "";
+                //    txtUserName.Focus();
+                //}
                 #endregion
             }
         }
