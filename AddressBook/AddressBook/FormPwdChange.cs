@@ -38,21 +38,21 @@ namespace AddressBook
                 txtNewPwdAgain.Focus();
                 return;
             }
-
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            string sql = "update [User] set Password=@Password where UserName=@userName";
+            SqlParameter[] para = 
             {
-                string sql = string.Format("update [User] set Password='{0}' where UserName='{1}'",
-                    txtNewPwd.Text.Trim(), UserHelper.userName);    // User 为数据库保留字，用方括号括起来
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
-                int n = Convert.ToInt32(cmd.ExecuteNonQuery());
-                if (n != 1)
-                    MessageBox.Show("密码修改失败！");
-                else
-                {
-                    MessageBox.Show("密码修改成功！");
-                    UserHelper.password = txtNewPwd.Text.Trim();
-                }
+                new SqlParameter("@Password", SqlDbType.VarChar, 50),
+                new SqlParameter("@userName", SqlDbType.VarChar, 50)
+            };
+            para[0].Value = txtNewPwd.Text.Trim();
+            para[1].Value = UserHelper.userName;
+            int n = SqlDbHelper.ExecuteNonQuery(sql, CommandType.Text, para);
+            if (n != 1)
+                MessageBox.Show("密码修改失败！");
+            else
+            {
+                MessageBox.Show("密码修改成功！");
+                UserHelper.password = txtNewPwd.Text.Trim();
             }
         }
 

@@ -3,7 +3,7 @@
 
 # Task 1
 
-可以直接根据 [SqlServerSetting/readme.md](./SqlServerSetting/readme.md) 的提示配置 SQL Server 数据库环境
+可以直接根据 [SqlServerSetting/readme.md](./SqlServerSetting/readme.md) 的提示配置 SQL Server 数据库环境，缺少外键
 
 # Task 2
 
@@ -29,7 +29,14 @@ Stored Procedure 存储过程优点：
 - 缓存：编译好的会进入缓存，第二次执行的速度明显提高
 - 减少网络传输：
 
+# Task12
 
+对数据库的操作分为四类：
+
+- 对数据库进行非连接式查询操作，返回多条记录。可以通过 SqlDataAdapter 对象的 Fill 方法来完成
+- 对数据库进行连接式查询操作，返回多条查询记录。可以通过 SqlCommand 对象的 ExecuteReader 方法来完成
+- 从数据库中检索单个值。可以通过 SqlCommand 对象的 ExecuteScalar 来完成
+- 对数据库执行增、删、改操作。可以通过 SqlCommand 对象的 ExecuteNonQuery 来完成
 
 # 优化
 
@@ -37,6 +44,7 @@ Stored Procedure 存储过程优点：
 - 写弹出消息框也较为麻烦
 - 将是否选中 DataGridView 中行的判断封装
 - FormContactAdd 和 FormContactDetail 相同函数 FillGroup 和 Check，提取
+- 使用 SqlDbHelper 类时创建参数麻烦，而且针对特定数据库
 
 
 

@@ -31,45 +31,26 @@ namespace AddressBook
         {
             txtId.Text = id.ToString();
             string sqlstr = "select * from ContactGroup where id = @id";
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            SqlParameter[] para = {
+                new SqlParameter("@id", SqlDbType.Int, 4)};
+            para[0].Value = id;
+            SqlDataReader dr = null;
+            try
             {
-                #region 普通
-                //SqlCommand cmd = new SqlCommand(sqlstr, conn);
-                //cmd.Parameters.AddWithValue("@id", id);
-                //conn.Open();
-                //SqlDataReader dr = cmd.ExecuteReader();
-                //if (dr.Read())
-                //{
-                //    txtGroupName.Text = dr["GroupName"].ToString();
-                //    txtGroupMemo.Text = dr["Memo"].ToString();
-                //}
-                //dr.Close();
-                #endregion 
-
-                #region 使用存储过程
-                SqlCommand cmd = new SqlCommand("GetGroupById", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                SqlParameter pGroupName = cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar, 50);
-                pGroupName.Direction = ParameterDirection.Output;
-
-                SqlParameter pMemo = cmd.Parameters.Add("@Memo", SqlDbType.NVarChar, 200);
-                pMemo.Direction = ParameterDirection.Output;
-
-                SqlParameter pReturn = new SqlParameter("@return", SqlDbType.Int);
-                pReturn.Direction = ParameterDirection.ReturnValue;
-                cmd.Parameters.Add(pReturn);
-
-                cmd.Parameters.AddWithValue("@Id", id);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                if (Convert.ToInt32(pReturn.Value) == 0)
+                dr = SqlDbHelper.ExecuteReader(sqlstr, CommandType.Text, para);
+                if (dr.Read())
                 {
-                    txtGroupName.Text = pGroupName.Value.ToString();
-                    txtGroupMemo.Text = pMemo.Value.ToString();
+                    txtGroupName.Text = dr["GroupName"].ToString();
+                    txtGroupMemo.Text = dr["Memo"].ToString();
                 }
-                else
-                    MessageBox.Show("查询出错");
-                #endregion
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                dr.Close();
             }
         }
 
@@ -79,20 +60,19 @@ namespace AddressBook
             if (CheckGroupName(groupName) == false)
                 return;
             string memo = txtGroupMemo.Text.Trim();
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
-            {
-                string sql = "update ContactGroup set GroupName=@GroupName,Memo=@Memo where Id=@id";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@GroupName", groupName);
-                cmd.Parameters.AddWithValue("@Memo", memo);
-                cmd.Parameters.AddWithValue("@id", id);
-                conn.Open();
-                int n = Convert.ToInt32(cmd.ExecuteNonQuery());
-                if (n != 1)
-                    MessageBox.Show("更新失败！");
-                else
-                    MessageBox.Show("更新成功！");
-            }
+            string sql = "update ContactGroup set GroupName=@GroupName,Memo=@Memo where Id=@id";
+            SqlParameter[] para = {
+                new SqlParameter("@GroupName", SqlDbType.NVarChar, 50),
+                new SqlParameter("@Memo", SqlDbType.NVarChar, 200),
+                new SqlParameter("@id", SqlDbType.Int, 4)};
+            para[0].Value = groupName;
+            para[1].Value = memo;
+            para[2].Value = id;
+            int n = SqlDbHelper.ExecuteNonQuery(sql, CommandType.Text, para);
+            if (n != 1)
+                MessageBox.Show("更新失败！");
+            else
+                MessageBox.Show("更新成功！");
         }
 
         /// <summary>

@@ -42,19 +42,20 @@ namespace AddressBook
                 MessageBox.Show("请先选择数据库备份路径","提示");
                 return;
             }
-            
-            SqlConnection conn = new SqlConnection(DBHelper.connString);
+
             try
             {
                 this.Cursor = Cursors.WaitCursor;
                 if (File.Exists(backupPath))    // 需要引用 System.IO 类
                     File.Delete(backupPath);
 
-                string sql = string.Format("backup database AddressList to disk='{0}'", backupPath);
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
-
-                cmd.ExecuteNonQuery();
+                string sql = "backup database AddressList to disk=@backupPath";
+                SqlParameter[] para =
+                {
+                    new SqlParameter("@backupPath", SqlDbType.NVarChar, 200)
+                };
+                para[0].Value = backupPath;
+                SqlDbHelper.ExecuteNonQuery(sql, CommandType.Text, para);
                 MessageBox.Show("数据库备份成功");
             }
             catch (System.Exception ex)
@@ -63,7 +64,6 @@ namespace AddressBook
             }
             finally
             {
-                conn.Close();
                 this.Cursor = Cursors.Arrow;
             }
         }
@@ -89,19 +89,21 @@ namespace AddressBook
                 return;
             }
 
-            SqlConnection conn = new SqlConnection(DBHelper.connString);
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                string sql = string.Format(
+                string sql =
                     "Alter Database AddressList Set Offline with Rollback immediate;" +
                     "use master;" +
-                    "restore database AddressList from disk='{0}' With Replace;" +
-                    "Alter Database AddressList Set OnLine With rollback Immediate", restorePath);
+                    "restore database AddressList from disk=@restorePath With Replace;" +
+                    "Alter Database AddressList Set OnLine With rollback Immediate";
 
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
+                SqlParameter[] para = 
+                {
+                    new SqlParameter("@restorePath", SqlDbType.NVarChar, 200)
+                };
+                para[0].Value = restorePath;
+                SqlDbHelper.ExecuteNonQuery(sql, CommandType.Text, para);
                 MessageBox.Show("数据库恢复成功！");
             }
             catch (System.Exception ex)
@@ -110,7 +112,6 @@ namespace AddressBook
             }
             finally
             {
-                conn.Close();
                 this.Cursor = Cursors.Arrow;
             }
         }

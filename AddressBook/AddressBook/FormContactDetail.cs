@@ -32,20 +32,11 @@ namespace AddressBook
         /// </summary>
         void FillGroup()
         {
-            string sql = "select * from ContactGroup";
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
-            {
-                //SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlCommand cmd = new SqlCommand("GetAllContactGroup", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-                da.Fill(ds);
-                cboGroup.DisplayMember = "GroupName";
-                cboGroup.ValueMember = "Id";
-                cboGroup.DataSource = ds.Tables[0];
-            }
+            DataTable dt = new DataTable();
+            dt = SqlDbHelper.ExecuteDataTable("GetAllContactGroup", CommandType.StoredProcedure);
+            cboGroup.DisplayMember = "GroupName";
+            cboGroup.ValueMember = "Id";
+            cboGroup.DataSource = dt;
         }
 
         bool Check(string name, string phone, string email, string qq, string officePhone, string homePhone)
@@ -94,20 +85,19 @@ namespace AddressBook
         {
             FillGroup();
             txtId.Text = id.ToString();
-            string sql = string.Format("select * from Contact where id={0}", id);
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            SqlDataReader dr = null;
+            try
             {
-                //SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlCommand cmd = new SqlCommand("GetContactById", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", id);
-
-                conn.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
+                SqlParameter[] para = 
+                {
+                    new SqlParameter("@Id", SqlDbType.Int, 4)
+                };
+                para[0].Value = id;
+                dr = SqlDbHelper.ExecuteReader("GetContactById", CommandType.StoredProcedure, para);
                 if (dr.Read())
                 {
                     txtName.Text = dr["Name"].ToString();
-                    txtPhone.Text = dr["Phone"].ToString(); 
+                    txtPhone.Text = dr["Phone"].ToString();
                     txtEmail.Text = dr["Email"].ToString();
                     txtQQ.Text = dr["QQ"].ToString();
                     txtWorkUnit.Text = dr["WorkUnit"].ToString();
@@ -118,6 +108,13 @@ namespace AddressBook
 
                     cboGroup.SelectedValue = dr["GroupId"].ToString();
                 }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
                 dr.Close();
             }
         }
@@ -139,37 +136,36 @@ namespace AddressBook
             if (!Check(name, phone, email, qq, officePhone, homePhone))
                 return;
 
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            SqlParameter[] para = 
             {
-                #region 普通
-                //string sql = string.Format("update Contact set Name='{0}',Phone='{1}',Email='{2}',QQ='{3}',WorkUnit='{4}',OfficePhone='{5}',HomeAddress='{6}',HomePhone='{7}',Memo='{8}',GroupId='{9}' where Id = {10}",
-                //    name, phone, email, qq, workUnit, officePhone, homeAddress, homePhone, memo, groupId, id);
-                //SqlCommand cmd = new SqlCommand(sql, conn);
-                #endregion
-
-                #region 使用存储过程
-                SqlCommand cmd = new SqlCommand("UpdateContact", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Email", email);
-                cmd.Parameters.AddWithValue("@QQ", qq);
-                cmd.Parameters.AddWithValue("@WorkUnit", workUnit);
-                cmd.Parameters.AddWithValue("@OfficePhone", officePhone);
-                cmd.Parameters.AddWithValue("@HomeAddress", homeAddress);
-                cmd.Parameters.AddWithValue("@HomePhone", homePhone);
-                cmd.Parameters.AddWithValue("@Memo", memo);
-                cmd.Parameters.AddWithValue("@GroupId", groupId);
-                cmd.Parameters.AddWithValue("@Id", id);
-                #endregion
-
-                conn.Open();
-                int n = Convert.ToInt32(cmd.ExecuteNonQuery());
-                if (n != 1)
-                    MessageBox.Show("更新失败！");
-                else
-                    MessageBox.Show("更新成功！");
-            }
+                new SqlParameter("@Name", SqlDbType.NVarChar, 50),
+                new SqlParameter("@Phone", SqlDbType.VarChar, 11),
+                new SqlParameter("@Email", SqlDbType.NVarChar, 50),
+                new SqlParameter("@QQ", SqlDbType.VarChar, 20),
+                new SqlParameter("@WorkUnit", SqlDbType.NVarChar, 200),
+                new SqlParameter("@OfficePhone", SqlDbType.VarChar, 20),
+                new SqlParameter("@HomeAddress", SqlDbType.NVarChar, 200),
+                new SqlParameter("@HomePhone", SqlDbType.VarChar, 20),
+                new SqlParameter("@Memo", SqlDbType.NVarChar, 200),
+                new SqlParameter("@GroupId", SqlDbType.Int, 4),
+                new SqlParameter("@Id", SqlDbType.Int, 4)
+            };
+            para[0].Value = name;
+            para[1].Value = phone;
+            para[2].Value = email;
+            para[3].Value = qq;
+            para[4].Value = workUnit;
+            para[5].Value = officePhone;
+            para[6].Value = homeAddress;
+            para[7].Value = homePhone;
+            para[8].Value = memo;
+            para[9].Value = groupId;
+            para[10].Value = id;
+            int rows = SqlDbHelper.ExecuteNonQuery("UpdateContact", CommandType.StoredProcedure, para);
+            if (rows != 1)
+                MessageBox.Show("更新失败！");
+            else
+                MessageBox.Show("更新成功！");
         }
 
         private void btnClose_Click(object sender, EventArgs e)

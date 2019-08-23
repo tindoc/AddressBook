@@ -27,13 +27,15 @@ namespace AddressBook
         public void Fill()
         {
             string sql = "select Id,GroupName,Memo from ContactGroup order by Id desc";
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
-            {
-                da = new SqlDataAdapter(sql, conn);
-                ds = new DataSet();
-                da.Fill(ds);
-                dgvGroupList.DataSource = ds.Tables[0];
-            }
+            //using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            //{
+            //    da = new SqlDataAdapter(sql, conn);
+            //    ds = new DataSet();
+            //    da.Fill(ds);
+            //    dgvGroupList.DataSource = ds.Tables[0];
+            //}
+            DataTable dt = SqlDbHelper.ExecuteDataTable(sql);
+            dgvGroupList.DataSource = dt;
         }
 
         private void FormContactList_Load(object sender, EventArgs e)
@@ -65,37 +67,30 @@ namespace AddressBook
                 return;
             }
 
-            // 若分组下存在联系人信息，不允许删除
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            string sql = "select count(*) from Contact where GroupId = @id";
+            SqlParameter[] para = {
+                new SqlParameter("@id",SqlDbType.Int, 4)};
+            para[0].Value = id;
+            int n = int.Parse(SqlDbHelper.ExecuteScalar(sql, CommandType.Text, para).ToString());
+            if (n >= 1)
             {
-                string sql = "select count(*) from Contact where GroupId = @id";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                conn.Open();
-                int result = Convert.ToInt32(cmd.ExecuteScalar());
-                if (result >= 1)
-                {
-                    MessageBox.Show("该分组下存在联系人信息，不允许删除！");
-                    return;
-                }
+                MessageBox.Show("该分组下存在联系人信息，不允许删除！");
+                return;
+            }
+            string sql_2 = "delete from ContactGroup where Id = @id";
+            SqlParameter[] para_2 = {
+                new SqlParameter("@id", SqlDbType.Int, 4)};
+            para_2[0].Value = id;
+            int rows = SqlDbHelper.ExecuteNonQuery(sql_2, CommandType.Text, para_2);
+            if (rows != 1)
+            {
+                MessageBox.Show("删除失败！");
+            }
+            else
+            {
+                MessageBox.Show("删除成功！");
             }
 
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
-            {
-                string sql = "delete from ContactGroup where Id = @id";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                conn.Open();
-                int result = Convert.ToInt32(cmd.ExecuteNonQuery());
-                if (result != 1)
-                {
-                    MessageBox.Show("删除失败！");
-                }
-                else
-                {
-                    MessageBox.Show("删除成功！");
-                }
-            }
             Fill();
         }
 

@@ -21,45 +21,27 @@ namespace AddressBook
         /// </summary>
         public void Fill()
         {
-            #region 普通
-            //string sql = "select Contact.Id,Name,Phone,Email,QQ,GroupName from Contact,ContactGroup where Contact.GroupId=ContactGroup.Id";
-            //if (cboCondition.Text == "姓名")
-            //    sql += " and Name like '%" + txtSearch.Text.Trim() + "%'";
-            //else if (cboCondition.Text == "手机")
-            //    sql += " and Phone like '%" + txtSearch.Text.Trim() + "%'";
-            //sql += " order by Contact.Id desc";
-            //using (SqlConnection conn = new SqlConnection(DBHelper.connString))
-            //{
-            //    da = new SqlDataAdapter(sql, conn);
-            //    ds = new DataSet();
-            //    da.Fill(ds);
-            //    dgvContactList.DataSource = ds.Tables[0];
-            //}
-            #endregion
+            SqlParameter[] para = new SqlParameter[1];
+            para[0] = new SqlParameter();
 
-            #region 使用存储模式
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            DataTable dt = new DataTable();
+            if (cboCondition.Text == "姓名")
             {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Connection = conn;
-                if (cboCondition.Text == "姓名")
-                {
-                    cmd.CommandText = "GetContactListByName";
-                    cmd.Parameters.AddWithValue("@Name", txtSearch.Text.Trim());
-                }
-                else
-                {
-                    cmd.CommandText = "GetContactListByPhone";
-                    cmd.Parameters.AddWithValue("@Phone", txtSearch.Text.Trim());
-                }
-
-                da = new SqlDataAdapter(cmd);
-                ds = new DataSet();
-                da.Fill(ds);
-                dgvContactList.DataSource = ds.Tables[0];
+                para[0].ParameterName = "@Name";
+                para[0].SqlDbType = SqlDbType.NVarChar;
+                para[0].Size = 50;
+                para[0].Value = txtSearch.Text.Trim();
+                dt = SqlDbHelper.ExecuteDataTable("GetContactListByName", CommandType.StoredProcedure, para);
             }
-            #endregion
+            else
+            {
+                para[0].ParameterName = "@Phone";
+                para[0].SqlDbType = SqlDbType.VarChar;
+                para[0].Size = 11;
+                para[0].Value = txtSearch.Text.Trim();
+                dt = SqlDbHelper.ExecuteDataTable("GetContactListByPhone", CommandType.StoredProcedure, para);
+            }
+            dgvContactList.DataSource = dt;
         }
 
         public FormContactList()
@@ -98,30 +80,17 @@ namespace AddressBook
             }
             if (MessageBox.Show("确定要删除吗？", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
-            {
-                #region 普通
-                //string sql = string.Format("delete from Contact where Id={0}", id);
-                //SqlCommand cmd = new SqlCommand(sql, conn);
-                #endregion
 
-                #region 使用存储过程
-                SqlCommand cmd = new SqlCommand("DeleteContactById", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", id);
-                #endregion
+            SqlParameter[] para = {
+                new SqlParameter("@Id", SqlDbType.Int, 4)};
+            para[0].Value = id;
+            int rows = SqlDbHelper.ExecuteNonQuery("DeleteContactById", CommandType.StoredProcedure, para);
+            if (rows != 1)
+                MessageBox.Show("删除失败！");
+            else
+                MessageBox.Show("删除成功！");
 
-                conn.Open();
-
-                int n = Convert.ToInt32(cmd.ExecuteNonQuery());
-                if (n != 1)
-                    MessageBox.Show("删除失败！");
-                else
-                    MessageBox.Show("删除成功！");
-
-                Fill();
-            }
-
+            Fill();
         }
 
         private void btnModify_Click(object sender, EventArgs e)

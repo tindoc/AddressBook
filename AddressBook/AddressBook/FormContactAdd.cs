@@ -50,6 +50,13 @@ namespace AddressBook
                 cboGroup.DataSource = ds.Tables[0];
             }
             #endregion
+
+
+            DataTable dt = new DataTable();
+            dt = SqlDbHelper.ExecuteDataTable("GetAllContactGroup", CommandType.StoredProcedure);
+            cboGroup.DisplayMember = "GroupName";
+            cboGroup.ValueMember = "Id";
+            cboGroup.DataSource = dt;
         }
 
         bool Check(string name, string phone, string email, string qq, string officePhone, string homePhone)
@@ -115,37 +122,34 @@ namespace AddressBook
 
             if (!Check(name, phone, email, qq, officePhone, homePhone))
                 return;
-
-            using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            SqlParameter[] para = 
             {
-                #region 普通
-                //string sql = string.Format("insert into Contact values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', {9})",
-                //    name, phone, email, qq, workUnit, officePhone, homeAddress, homePhone, memo, groupId);
-                //SqlCommand cmd = new SqlCommand(sql, conn);
-                #endregion
-
-                #region 使用存储过程
-                SqlCommand cmd = new SqlCommand("InsertContact", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name",name);
-                cmd.Parameters.AddWithValue("@Phone",phone);
-                cmd.Parameters.AddWithValue("@Email",email);
-                cmd.Parameters.AddWithValue("@QQ",qq);
-                cmd.Parameters.AddWithValue("@WorkUnit",workUnit);
-                cmd.Parameters.AddWithValue("@OfficePhone",officePhone);
-                cmd.Parameters.AddWithValue("@HomeAddress",homeAddress);
-                cmd.Parameters.AddWithValue("@HomePhone",homePhone);
-                cmd.Parameters.AddWithValue("@Memo",memo);
-                cmd.Parameters.AddWithValue("@GroupId",groupId);
-                #endregion
-
-                conn.Open();
-                int n = Convert.ToInt32(cmd.ExecuteNonQuery());
-                if (n != 1)
-                    MessageBox.Show("添加联系人失败！");
-                else
-                    MessageBox.Show("添加联系人成功！");
-            }
+                new SqlParameter("@Name", SqlDbType.NVarChar, 50),
+                new SqlParameter("@Phone", SqlDbType.VarChar, 11),
+                new SqlParameter("@Email", SqlDbType.NVarChar, 50),
+                new SqlParameter("@QQ", SqlDbType.VarChar, 20),
+                new SqlParameter("@WorkUnit", SqlDbType.NVarChar, 200),
+                new SqlParameter("@OfficePhone", SqlDbType.VarChar, 20),
+                new SqlParameter("@HomeAddress", SqlDbType.NVarChar, 200),
+                new SqlParameter("@HomePhone", SqlDbType.VarChar, 20),
+                new SqlParameter("@Memo", SqlDbType.NVarChar, 200),
+                new SqlParameter("@GroupId", SqlDbType.Int, 4)
+            };
+            para[0].Value = name;
+            para[1].Value = phone;
+            para[2].Value = email;
+            para[3].Value = qq;
+            para[4].Value = workUnit;
+            para[5].Value = officePhone;
+            para[6].Value = homeAddress;
+            para[7].Value = homePhone;
+            para[8].Value = memo;
+            para[9].Value = groupId;
+            int n = SqlDbHelper.ExecuteNonQuery("InsertContact", CommandType.StoredProcedure, para);
+            if (n != 1)
+                MessageBox.Show("添加联系人失败！");
+            else
+                MessageBox.Show("添加联系人成功！");
         }
 
         private void btnClose_Click(object sender, EventArgs e)
