@@ -33,16 +33,43 @@ namespace AddressBook
             string sqlstr = "select * from ContactGroup where id = @id";
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                SqlCommand cmd = new SqlCommand(sqlstr, conn);
-                cmd.Parameters.AddWithValue("@id", id);
+                #region 普通
+                //SqlCommand cmd = new SqlCommand(sqlstr, conn);
+                //cmd.Parameters.AddWithValue("@id", id);
+                //conn.Open();
+                //SqlDataReader dr = cmd.ExecuteReader();
+                //if (dr.Read())
+                //{
+                //    txtGroupName.Text = dr["GroupName"].ToString();
+                //    txtGroupMemo.Text = dr["Memo"].ToString();
+                //}
+                //dr.Close();
+                #endregion 
+
+                #region 使用存储过程
+                SqlCommand cmd = new SqlCommand("GetGroupById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlParameter pGroupName = cmd.Parameters.Add("@GroupName", SqlDbType.NVarChar, 50);
+                pGroupName.Direction = ParameterDirection.Output;
+
+                SqlParameter pMemo = cmd.Parameters.Add("@Memo", SqlDbType.NVarChar, 200);
+                pMemo.Direction = ParameterDirection.Output;
+
+                SqlParameter pReturn = new SqlParameter("@return", SqlDbType.Int);
+                pReturn.Direction = ParameterDirection.ReturnValue;
+                cmd.Parameters.Add(pReturn);
+
+                cmd.Parameters.AddWithValue("@Id", id);
                 conn.Open();
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read())
+                cmd.ExecuteNonQuery();
+                if (Convert.ToInt32(pReturn.Value) == 0)
                 {
-                    txtGroupName.Text = dr["GroupName"].ToString();
-                    txtGroupMemo.Text = dr["Memo"].ToString();
+                    txtGroupName.Text = pGroupName.Value.ToString();
+                    txtGroupMemo.Text = pMemo.Value.ToString();
                 }
-                dr.Close();
+                else
+                    MessageBox.Show("查询出错");
+                #endregion
             }
         }
 

@@ -36,6 +36,9 @@ namespace AddressBook
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
                 //SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlCommand cmd = new SqlCommand("GetAllContactGroup", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 DataSet ds = new DataSet();
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
                 da.Fill(ds);
@@ -94,7 +97,11 @@ namespace AddressBook
             string sql = string.Format("select * from Contact where id={0}", id);
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                //SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlCommand cmd = new SqlCommand("GetContactById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+
                 conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
@@ -134,9 +141,28 @@ namespace AddressBook
 
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                string sql = string.Format("update Contact set Name='{0}',Phone='{1}',Email='{2}',QQ='{3}',WorkUnit='{4}',OfficePhone='{5}',HomeAddress='{6}',HomePhone='{7}',Memo='{8}',GroupId='{9}' where Id = {10}",
-                    name, phone, email, qq, workUnit, officePhone, homeAddress, homePhone, memo, groupId, id);
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                #region 普通
+                //string sql = string.Format("update Contact set Name='{0}',Phone='{1}',Email='{2}',QQ='{3}',WorkUnit='{4}',OfficePhone='{5}',HomeAddress='{6}',HomePhone='{7}',Memo='{8}',GroupId='{9}' where Id = {10}",
+                //    name, phone, email, qq, workUnit, officePhone, homeAddress, homePhone, memo, groupId, id);
+                //SqlCommand cmd = new SqlCommand(sql, conn);
+                #endregion
+
+                #region 使用存储过程
+                SqlCommand cmd = new SqlCommand("UpdateContact", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Phone", phone);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@QQ", qq);
+                cmd.Parameters.AddWithValue("@WorkUnit", workUnit);
+                cmd.Parameters.AddWithValue("@OfficePhone", officePhone);
+                cmd.Parameters.AddWithValue("@HomeAddress", homeAddress);
+                cmd.Parameters.AddWithValue("@HomePhone", homePhone);
+                cmd.Parameters.AddWithValue("@Memo", memo);
+                cmd.Parameters.AddWithValue("@GroupId", groupId);
+                cmd.Parameters.AddWithValue("@Id", id);
+                #endregion
+
                 conn.Open();
                 int n = Convert.ToInt32(cmd.ExecuteNonQuery());
                 if (n != 1)

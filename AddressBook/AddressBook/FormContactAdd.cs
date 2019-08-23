@@ -23,17 +23,33 @@ namespace AddressBook
         /// </summary>
         void FillGroup()
         {
-            string sql = "select * from ContactGroup";
+            #region 普通
+            //string sql = "select * from ContactGroup";
+            //using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            //{
+            //    //SqlCommand cmd = new SqlCommand(sql, conn);
+            //    DataSet ds = new DataSet();
+            //    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+            //    da.Fill(ds);
+            //    cboGroup.DisplayMember = "GroupName";
+            //    cboGroup.ValueMember = "Id";
+            //    cboGroup.DataSource = ds.Tables[0];
+            //}
+            #endregion
+
+            #region 使用存储过程
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                //SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlCommand cmd = new SqlCommand("GetAllContactGroup", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
                 DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 cboGroup.DisplayMember = "GroupName";
                 cboGroup.ValueMember = "Id";
                 cboGroup.DataSource = ds.Tables[0];
             }
+            #endregion
         }
 
         bool Check(string name, string phone, string email, string qq, string officePhone, string homePhone)
@@ -102,9 +118,27 @@ namespace AddressBook
 
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                string sql = string.Format("insert into Contact values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', {9})",
-                    name, phone, email, qq, workUnit, officePhone, homeAddress, homePhone, memo, groupId);
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                #region 普通
+                //string sql = string.Format("insert into Contact values('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', {9})",
+                //    name, phone, email, qq, workUnit, officePhone, homeAddress, homePhone, memo, groupId);
+                //SqlCommand cmd = new SqlCommand(sql, conn);
+                #endregion
+
+                #region 使用存储过程
+                SqlCommand cmd = new SqlCommand("InsertContact", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Name",name);
+                cmd.Parameters.AddWithValue("@Phone",phone);
+                cmd.Parameters.AddWithValue("@Email",email);
+                cmd.Parameters.AddWithValue("@QQ",qq);
+                cmd.Parameters.AddWithValue("@WorkUnit",workUnit);
+                cmd.Parameters.AddWithValue("@OfficePhone",officePhone);
+                cmd.Parameters.AddWithValue("@HomeAddress",homeAddress);
+                cmd.Parameters.AddWithValue("@HomePhone",homePhone);
+                cmd.Parameters.AddWithValue("@Memo",memo);
+                cmd.Parameters.AddWithValue("@GroupId",groupId);
+                #endregion
+
                 conn.Open();
                 int n = Convert.ToInt32(cmd.ExecuteNonQuery());
                 if (n != 1)

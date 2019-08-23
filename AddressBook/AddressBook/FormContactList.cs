@@ -21,19 +21,45 @@ namespace AddressBook
         /// </summary>
         public void Fill()
         {
-            string sql = "select Contact.Id,Name,Phone,Email,QQ,GroupName from Contact,ContactGroup where Contact.GroupId=ContactGroup.Id";
-            if (cboCondition.Text == "姓名")
-                sql += " and Name like '%" + txtSearch.Text.Trim() + "%'";
-            else if (cboCondition.Text == "手机")
-                sql += " and Phone like '%" + txtSearch.Text.Trim() + "%'";
-            sql += " order by Contact.Id desc";
+            #region 普通
+            //string sql = "select Contact.Id,Name,Phone,Email,QQ,GroupName from Contact,ContactGroup where Contact.GroupId=ContactGroup.Id";
+            //if (cboCondition.Text == "姓名")
+            //    sql += " and Name like '%" + txtSearch.Text.Trim() + "%'";
+            //else if (cboCondition.Text == "手机")
+            //    sql += " and Phone like '%" + txtSearch.Text.Trim() + "%'";
+            //sql += " order by Contact.Id desc";
+            //using (SqlConnection conn = new SqlConnection(DBHelper.connString))
+            //{
+            //    da = new SqlDataAdapter(sql, conn);
+            //    ds = new DataSet();
+            //    da.Fill(ds);
+            //    dgvContactList.DataSource = ds.Tables[0];
+            //}
+            #endregion
+
+            #region 使用存储模式
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                da = new SqlDataAdapter(sql, conn);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = conn;
+                if (cboCondition.Text == "姓名")
+                {
+                    cmd.CommandText = "GetContactListByName";
+                    cmd.Parameters.AddWithValue("@Name", txtSearch.Text.Trim());
+                }
+                else
+                {
+                    cmd.CommandText = "GetContactListByPhone";
+                    cmd.Parameters.AddWithValue("@Phone", txtSearch.Text.Trim());
+                }
+
+                da = new SqlDataAdapter(cmd);
                 ds = new DataSet();
                 da.Fill(ds);
                 dgvContactList.DataSource = ds.Tables[0];
             }
+            #endregion
         }
 
         public FormContactList()
@@ -74,8 +100,17 @@ namespace AddressBook
                 return;
             using (SqlConnection conn = new SqlConnection(DBHelper.connString))
             {
-                string sql = string.Format("delete from Contact where Id={0}", id);
-                SqlCommand cmd = new SqlCommand(sql, conn);
+                #region 普通
+                //string sql = string.Format("delete from Contact where Id={0}", id);
+                //SqlCommand cmd = new SqlCommand(sql, conn);
+                #endregion
+
+                #region 使用存储过程
+                SqlCommand cmd = new SqlCommand("DeleteContactById", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                #endregion
+
                 conn.Open();
 
                 int n = Convert.ToInt32(cmd.ExecuteNonQuery());
