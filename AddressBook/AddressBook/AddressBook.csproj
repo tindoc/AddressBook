@@ -133,6 +133,9 @@
     <EmbeddedResource Include="FormContactList.resx">
       <DependentUpon>FormContactList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormDB.resx">
+      <DependentUpon>FormDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGroupList.resx">
       <DependentUpon>FormGroupList.cs</DependentUpon>
     </EmbeddedResource>

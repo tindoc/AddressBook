@@ -15,6 +15,12 @@ ToolStrip 工具栏上添加的是 button ，根据控件名称 tsbtnxxxx 得知
 
 ComboBox 的 DropDownStyle 属性设置为 DropDownList 之后只能在组合框中选取
 
+# Task 7
+
+需要 using System.IO 才可以使用 File 类
+
+**这个备份和恢复只能在客户端和数据库在同一台主机上才可以实现，暂不支持远程备份**
+
 
 
 # 优化
