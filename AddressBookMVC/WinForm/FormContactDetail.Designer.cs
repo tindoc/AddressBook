@@ -1,4 +1,4 @@
-﻿namespace AddressBook
+﻿namespace WinForm
 {
     partial class FormContactDetail
     {
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -50,209 +52,207 @@
             this.txtQQ = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(54, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 12);
+            this.label11.TabIndex = 69;
+            this.label11.Text = "自动编号";
+            // 
+            // txtId
+            // 
+            this.txtId.Enabled = false;
+            this.txtId.Location = new System.Drawing.Point(113, 12);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(174, 21);
+            this.txtId.TabIndex = 68;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(79, 292);
+            this.label10.Location = new System.Drawing.Point(78, 292);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(29, 12);
-            this.label10.TabIndex = 43;
+            this.label10.TabIndex = 67;
             this.label10.Text = "备注";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(319, 251);
+            this.label9.Location = new System.Drawing.Point(318, 251);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 12);
-            this.label9.TabIndex = 42;
+            this.label9.TabIndex = 66;
             this.label9.Text = "所在分组";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(55, 203);
+            this.label8.Location = new System.Drawing.Point(54, 203);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 41;
+            this.label8.TabIndex = 65;
             this.label8.Text = "家庭住址";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(319, 157);
+            this.label7.Location = new System.Drawing.Point(318, 157);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 12);
-            this.label7.TabIndex = 40;
+            this.label7.TabIndex = 64;
             this.label7.Text = "家庭电话";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(55, 156);
+            this.label6.Location = new System.Drawing.Point(54, 156);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
-            this.label6.TabIndex = 39;
+            this.label6.TabIndex = 63;
             this.label6.Text = "单位电话";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(55, 109);
+            this.label5.Location = new System.Drawing.Point(54, 109);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 38;
+            this.label5.TabIndex = 62;
             this.label5.Text = "工作单位";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(319, 63);
+            this.label4.Location = new System.Drawing.Point(318, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
-            this.label4.TabIndex = 37;
+            this.label4.TabIndex = 61;
             this.label4.Text = "电子邮件";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(91, 249);
+            this.label3.Location = new System.Drawing.Point(90, 249);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
-            this.label3.TabIndex = 36;
+            this.label3.TabIndex = 60;
             this.label3.Text = "QQ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 63);
+            this.label2.Location = new System.Drawing.Point(78, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
-            this.label2.TabIndex = 35;
+            this.label2.TabIndex = 59;
             this.label2.Text = "手机";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(343, 15);
+            this.label1.Location = new System.Drawing.Point(342, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 34;
+            this.label1.TabIndex = 58;
             this.label1.Text = "姓名";
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(477, 388);
+            this.btnClose.Location = new System.Drawing.Point(476, 388);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 57;
             this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(114, 388);
+            this.btnSave.Location = new System.Drawing.Point(113, 388);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 56;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtMemo
             // 
-            this.txtMemo.Location = new System.Drawing.Point(114, 293);
+            this.txtMemo.Location = new System.Drawing.Point(113, 293);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(438, 77);
-            this.txtMemo.TabIndex = 9;
+            this.txtMemo.TabIndex = 55;
             // 
             // cboGroup
             // 
             this.cboGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGroup.FormattingEnabled = true;
-            this.cboGroup.Location = new System.Drawing.Point(378, 247);
+            this.cboGroup.Location = new System.Drawing.Point(377, 247);
             this.cboGroup.Name = "cboGroup";
             this.cboGroup.Size = new System.Drawing.Size(175, 20);
-            this.cboGroup.TabIndex = 8;
+            this.cboGroup.TabIndex = 54;
             // 
             // txtHomeAddress
             // 
-            this.txtHomeAddress.Location = new System.Drawing.Point(114, 200);
+            this.txtHomeAddress.Location = new System.Drawing.Point(113, 200);
             this.txtHomeAddress.Name = "txtHomeAddress";
             this.txtHomeAddress.Size = new System.Drawing.Size(438, 21);
-            this.txtHomeAddress.TabIndex = 6;
+            this.txtHomeAddress.TabIndex = 52;
             // 
             // txtHomePhone
             // 
-            this.txtHomePhone.Location = new System.Drawing.Point(378, 153);
+            this.txtHomePhone.Location = new System.Drawing.Point(377, 153);
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.Size = new System.Drawing.Size(174, 21);
-            this.txtHomePhone.TabIndex = 5;
+            this.txtHomePhone.TabIndex = 51;
             // 
             // txtOfficePhone
             // 
-            this.txtOfficePhone.Location = new System.Drawing.Point(114, 153);
+            this.txtOfficePhone.Location = new System.Drawing.Point(113, 153);
             this.txtOfficePhone.Name = "txtOfficePhone";
             this.txtOfficePhone.Size = new System.Drawing.Size(174, 21);
-            this.txtOfficePhone.TabIndex = 4;
+            this.txtOfficePhone.TabIndex = 50;
             // 
             // txtWorkUnit
             // 
-            this.txtWorkUnit.Location = new System.Drawing.Point(114, 106);
+            this.txtWorkUnit.Location = new System.Drawing.Point(113, 106);
             this.txtWorkUnit.Name = "txtWorkUnit";
             this.txtWorkUnit.Size = new System.Drawing.Size(438, 21);
-            this.txtWorkUnit.TabIndex = 3;
+            this.txtWorkUnit.TabIndex = 49;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(378, 59);
+            this.txtEmail.Location = new System.Drawing.Point(377, 59);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(174, 21);
-            this.txtEmail.TabIndex = 2;
+            this.txtEmail.TabIndex = 48;
             // 
             // txtQQ
             // 
-            this.txtQQ.Location = new System.Drawing.Point(114, 246);
+            this.txtQQ.Location = new System.Drawing.Point(113, 246);
             this.txtQQ.Name = "txtQQ";
             this.txtQQ.Size = new System.Drawing.Size(174, 21);
-            this.txtQQ.TabIndex = 7;
+            this.txtQQ.TabIndex = 53;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(114, 59);
+            this.txtPhone.Location = new System.Drawing.Point(113, 59);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(174, 21);
-            this.txtPhone.TabIndex = 1;
+            this.txtPhone.TabIndex = 47;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(378, 12);
+            this.txtName.Location = new System.Drawing.Point(377, 12);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(174, 21);
-            this.txtName.TabIndex = 0;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(55, 16);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 12);
-            this.label11.TabIndex = 45;
-            this.label11.Text = "自动编号";
-            // 
-            // txtId
-            // 
-            this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(114, 12);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(174, 21);
-            this.txtId.TabIndex = 44;
+            this.txtName.TabIndex = 46;
             // 
             // FormContactDetail
             // 
@@ -293,6 +293,8 @@
 
         #endregion
 
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -315,7 +317,5 @@
         private System.Windows.Forms.TextBox txtQQ;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtId;
     }
 }

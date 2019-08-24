@@ -1,6 +1,6 @@
-﻿namespace AddressBook
+﻿namespace WinForm
 {
-    partial class FormContactDetail
+    partial class FormContactAdd
     {
         /// <summary>
         /// Required designer variable.
@@ -50,8 +50,6 @@
             this.txtQQ = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label10
@@ -66,7 +64,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(319, 251);
+            this.label9.Location = new System.Drawing.Point(55, 250);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 12);
             this.label9.TabIndex = 42;
@@ -120,7 +118,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(91, 249);
+            this.label3.Location = new System.Drawing.Point(91, 62);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 12);
             this.label3.TabIndex = 36;
@@ -129,7 +127,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 63);
+            this.label2.Location = new System.Drawing.Point(343, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 35;
@@ -138,7 +136,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(343, 15);
+            this.label1.Location = new System.Drawing.Point(79, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 12);
             this.label1.TabIndex = 34;
@@ -149,7 +147,7 @@
             this.btnClose.Location = new System.Drawing.Point(477, 388);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 11;
+            this.btnClose.TabIndex = 33;
             this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -159,7 +157,7 @@
             this.btnSave.Location = new System.Drawing.Point(114, 388);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 32;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -170,97 +168,78 @@
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(438, 77);
-            this.txtMemo.TabIndex = 9;
+            this.txtMemo.TabIndex = 31;
             // 
             // cboGroup
             // 
             this.cboGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGroup.FormattingEnabled = true;
-            this.cboGroup.Location = new System.Drawing.Point(378, 247);
+            this.cboGroup.Location = new System.Drawing.Point(114, 247);
             this.cboGroup.Name = "cboGroup";
             this.cboGroup.Size = new System.Drawing.Size(175, 20);
-            this.cboGroup.TabIndex = 8;
+            this.cboGroup.TabIndex = 30;
             // 
             // txtHomeAddress
             // 
             this.txtHomeAddress.Location = new System.Drawing.Point(114, 200);
             this.txtHomeAddress.Name = "txtHomeAddress";
             this.txtHomeAddress.Size = new System.Drawing.Size(438, 21);
-            this.txtHomeAddress.TabIndex = 6;
+            this.txtHomeAddress.TabIndex = 29;
             // 
             // txtHomePhone
             // 
             this.txtHomePhone.Location = new System.Drawing.Point(378, 153);
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.Size = new System.Drawing.Size(174, 21);
-            this.txtHomePhone.TabIndex = 5;
+            this.txtHomePhone.TabIndex = 28;
             // 
             // txtOfficePhone
             // 
             this.txtOfficePhone.Location = new System.Drawing.Point(114, 153);
             this.txtOfficePhone.Name = "txtOfficePhone";
             this.txtOfficePhone.Size = new System.Drawing.Size(174, 21);
-            this.txtOfficePhone.TabIndex = 4;
+            this.txtOfficePhone.TabIndex = 27;
             // 
             // txtWorkUnit
             // 
             this.txtWorkUnit.Location = new System.Drawing.Point(114, 106);
             this.txtWorkUnit.Name = "txtWorkUnit";
             this.txtWorkUnit.Size = new System.Drawing.Size(438, 21);
-            this.txtWorkUnit.TabIndex = 3;
+            this.txtWorkUnit.TabIndex = 26;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(378, 59);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(174, 21);
-            this.txtEmail.TabIndex = 2;
+            this.txtEmail.TabIndex = 25;
             // 
             // txtQQ
             // 
-            this.txtQQ.Location = new System.Drawing.Point(114, 246);
+            this.txtQQ.Location = new System.Drawing.Point(114, 59);
             this.txtQQ.Name = "txtQQ";
             this.txtQQ.Size = new System.Drawing.Size(174, 21);
-            this.txtQQ.TabIndex = 7;
+            this.txtQQ.TabIndex = 24;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(114, 59);
+            this.txtPhone.Location = new System.Drawing.Point(378, 12);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(174, 21);
-            this.txtPhone.TabIndex = 1;
+            this.txtPhone.TabIndex = 23;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(378, 12);
+            this.txtName.Location = new System.Drawing.Point(114, 12);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(174, 21);
-            this.txtName.TabIndex = 0;
+            this.txtName.TabIndex = 22;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(55, 16);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 12);
-            this.label11.TabIndex = 45;
-            this.label11.Text = "自动编号";
-            // 
-            // txtId
-            // 
-            this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(114, 12);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(174, 21);
-            this.txtId.TabIndex = 44;
-            // 
-            // FormContactDetail
+            // FormContactAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 423);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.txtId);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -283,9 +262,9 @@
             this.Controls.Add(this.txtQQ);
             this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtName);
-            this.Name = "FormContactDetail";
-            this.Text = "联系人详细信息";
-            this.Load += new System.EventHandler(this.FormContactDetail_Load);
+            this.Name = "FormContactAdd";
+            this.Text = "新增联系人";
+            this.Load += new System.EventHandler(this.FormContactAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,7 +294,5 @@
         private System.Windows.Forms.TextBox txtQQ;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtId;
     }
 }
