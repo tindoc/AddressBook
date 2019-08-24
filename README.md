@@ -41,9 +41,9 @@ ComboBox 的 DropDownStyle 属性设置为 DropDownList 之后只能在组合框
 
 ### Task 7
 
-需要 using System.IO 才可以使用 File 类
+**注意：**需要 using System.IO 才可以使用 File 类
 
-**这个备份和恢复只能在客户端和数据库在同一台主机上才可以实现，暂不支持远程备份**
+**注意：**这个备份和恢复只能在客户端和数据库在同一台主机上才可以实现，暂不支持远程备份
 
 ### Task 11
 
@@ -80,7 +80,15 @@ Stored Procedure 存储过程优点：
 
 根据三层的依赖关系添加引用
 
-其中，App.config 文件还是在窗体项目中建立，而不是在 SQLDAL 项目中建立
+**注意：**App.config 文件还是在窗体项目中建立，而不是在 SQLDAL 项目中建立
+
+### Task 14
+
+Access 不支持存储过程，所以书在 AccessDAL 类中函数不传 CommandType 参数，当其他提供 OleDb 支持的数据库可能能使用，所以保留
+
+Access 的数据库备份就是 .mdb 文件的移动
+
+**注意：**由于没有修改 表现层 代码，所以在 数据库备份和恢复 的窗体中设置了 OpenFileDialog 和 SaveFileDIalog 的筛选字符串不是很符合，导致备份的文件后缀为 .bak 而不是 .mdb
 
 # 待优化
 

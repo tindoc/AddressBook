@@ -10,7 +10,8 @@ namespace BLL
 {
     public class Contact
     {
-        SQLDAL.Contact dal = new SQLDAL.Contact();
+        //SQLDAL.Contact dal = new SQLDAL.Contact();
+        AccessDAL.Contact dal = new AccessDAL.Contact();
 
         public int GetContactCountByGroupId(int groupId)
         {

@@ -9,7 +9,8 @@ namespace BLL
 {
     public class ContactGroup
     {
-        SQLDAL.ContactGroup group = new SQLDAL.ContactGroup();
+        //SQLDAL.ContactGroup group = new SQLDAL.ContactGroup();
+        AccessDAL.ContactGroup group = new AccessDAL.ContactGroup();
 
         public DataTable GetList(string strWhere)
         {
@@ -65,7 +66,8 @@ namespace BLL
 
         public bool Delete(int Id)
         {
-            SQLDAL.Contact contact = new SQLDAL.Contact();
+            //SQLDAL.Contact contact = new SQLDAL.Contact();
+            AccessDAL.Contact contact = new AccessDAL.Contact();
             int count = contact.GetContactCountByGroupId(Id);
             if (count > 0)
                 return false;   // 判断该分组下是否存在联系人

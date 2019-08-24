@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "WinForm\WinForm.csproj", "{3CD7AE23-07B5-4E71-B09D-EED2CD7EF07B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessDAL", "AccessDAL\AccessDAL.csproj", "{5474FFA9-811E-4C20-A252-251D4106DC71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,16 @@ Global
 		{3CD7AE23-07B5-4E71-B09D-EED2CD7EF07B}.Release|Mixed Platforms.Build.0 = Release|x86
 		{3CD7AE23-07B5-4E71-B09D-EED2CD7EF07B}.Release|x86.ActiveCfg = Release|x86
 		{3CD7AE23-07B5-4E71-B09D-EED2CD7EF07B}.Release|x86.Build.0 = Release|x86
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

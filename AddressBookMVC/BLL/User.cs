@@ -7,7 +7,8 @@ namespace BLL
 {
     public class User
     {
-        SQLDAL.User user = new SQLDAL.User();
+        //SQLDAL.User user = new SQLDAL.User();
+        AccessDAL.User user = new AccessDAL.User();
 
         public bool Login(string userName, string userPassword)
         {
