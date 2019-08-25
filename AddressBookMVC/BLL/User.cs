@@ -13,11 +13,12 @@ namespace BLL
 
         public bool Login(string userName, string userPassword)
         {
-            return user.Login(userName, userPassword);
+            return user.Login(userName, Common.MD5Provider.Hash(userPassword));
         }
 
         public bool Update(Model.User model)
         {
+            model.Password = Common.MD5Provider.Hash(model.Password);
             return user.Update(model);
         }
     }
