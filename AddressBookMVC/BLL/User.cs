@@ -8,7 +8,8 @@ namespace BLL
     public class User
     {
         //SQLDAL.User user = new SQLDAL.User();
-        AccessDAL.User user = new AccessDAL.User();
+        //AccessDAL.User user = new AccessDAL.User();
+        IDAL.IUser user = DALFactory.DataAccess.CreateUser();
 
         public bool Login(string userName, string userPassword)
         {

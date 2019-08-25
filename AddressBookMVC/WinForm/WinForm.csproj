@@ -171,6 +171,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AccessDAL\AccessDAL.csproj">
+      <Project>{5474FFA9-811E-4C20-A252-251D4106DC71}</Project>
+      <Name>AccessDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{205ACE55-597B-49A4-8F49-BA2869083828}</Project>
       <Name>BLL</Name>
@@ -178,6 +182,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{F49D14BF-7D4F-4452-A111-C4007E06176D}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLDAL\SQLDAL.csproj">
+      <Project>{3A3C9D87-9F78-4C6A-B19F-7C9B9B7C99F8}</Project>
+      <Name>SQLDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

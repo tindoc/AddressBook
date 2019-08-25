@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{205ACE55-597B-49A4-8F49-BA2869083828}</ProjectGuid>
+    <ProjectGuid>{B946713C-836D-4038-883A-64DB368DD3C0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BLL</RootNamespace>
-    <AssemblyName>BLL</AssemblyName>
+    <RootNamespace>DALFactory</RootNamespace>
+    <AssemblyName>DALFactory</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,28 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackupAndRestoreDb.cs" />
-    <Compile Include="Contact.cs" />
-    <Compile Include="ContactGroup.cs" />
+    <Compile Include="DataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{D885BF09-647B-4CD7-BFD4-F65FD2452AEC}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALFactory\DALFactory.csproj">
-      <Project>{B946713C-836D-4038-883A-64DB368DD3C0}</Project>
-      <Name>DALFactory</Name>
+    <ProjectReference Include="..\AccessDAL\AccessDAL.csproj">
+      <Project>{5474FFA9-811E-4C20-A252-251D4106DC71}</Project>
+      <Name>AccessDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\IDAL\IDAL.csproj">
       <Project>{F6AD9396-F802-4B54-AC7A-D00FBF339590}</Project>
       <Name>IDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{F49D14BF-7D4F-4452-A111-C4007E06176D}</Project>
-      <Name>Model</Name>
+    <ProjectReference Include="..\SQLDAL\SQLDAL.csproj">
+      <Project>{3A3C9D87-9F78-4C6A-B19F-7C9B9B7C99F8}</Project>
+      <Name>SQLDAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

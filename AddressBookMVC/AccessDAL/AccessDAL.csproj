@@ -49,6 +49,10 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IDAL\IDAL.csproj">
+      <Project>{F6AD9396-F802-4B54-AC7A-D00FBF339590}</Project>
+      <Name>IDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{F49D14BF-7D4F-4452-A111-C4007E06176D}</Project>
       <Name>Model</Name>

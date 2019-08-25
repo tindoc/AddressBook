@@ -9,7 +9,7 @@ using System.IO;
 
 namespace AccessDAL
 {
-    public class BackupAndRestoreDb
+    public class BackupAndRestoreDb:IDAL.IBackupAndRestoreDb
     {
         /// <summary>
         /// 备份数据库

@@ -8,7 +8,8 @@ namespace BLL
     public class BackupAndRestoreDb
     {
         //SQLDAL.BackupAndRestoreDb dal = new SQLDAL.BackupAndRestoreDb();
-        AccessDAL.BackupAndRestoreDb dal = new AccessDAL.BackupAndRestoreDb();
+        //AccessDAL.BackupAndRestoreDb dal = new AccessDAL.BackupAndRestoreDb();
+        IDAL.IBackupAndRestoreDb dal = DALFactory.DataAccess.CreateBackupAndRestoreDb();
 
         public void BackDb(string backupPath)
         {

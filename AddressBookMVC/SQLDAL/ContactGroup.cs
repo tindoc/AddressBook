@@ -11,7 +11,7 @@ namespace SQLDAL
     /// <summary>
     /// 数据访问类：ContactGroup
     /// </summary>
-    public partial class ContactGroup
+    public partial class ContactGroup:IDAL.IContactGroup
     {
         public ContactGroup() { }
 

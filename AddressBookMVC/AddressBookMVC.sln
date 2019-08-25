@@ -10,8 +10,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{D885BF09-647B-4CD7-BFD4-F65FD2452AEC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinForm", "WinForm\WinForm.csproj", "{3CD7AE23-07B5-4E71-B09D-EED2CD7EF07B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A3C9D87-9F78-4C6A-B19F-7C9B9B7C99F8} = {3A3C9D87-9F78-4C6A-B19F-7C9B9B7C99F8}
+		{5474FFA9-811E-4C20-A252-251D4106DC71} = {5474FFA9-811E-4C20-A252-251D4106DC71}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessDAL", "AccessDAL\AccessDAL.csproj", "{5474FFA9-811E-4C20-A252-251D4106DC71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDAL", "IDAL\IDAL.csproj", "{F6AD9396-F802-4B54-AC7A-D00FBF339590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALFactory", "DALFactory\DALFactory.csproj", "{B946713C-836D-4038-883A-64DB368DD3C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3A3C9D87-9F78-4C6A-B19F-7C9B9B7C99F8} = {3A3C9D87-9F78-4C6A-B19F-7C9B9B7C99F8}
+		{5474FFA9-811E-4C20-A252-251D4106DC71} = {5474FFA9-811E-4C20-A252-251D4106DC71}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +95,26 @@ Global
 		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5474FFA9-811E-4C20-A252-251D4106DC71}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F6AD9396-F802-4B54-AC7A-D00FBF339590}.Release|x86.ActiveCfg = Release|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B946713C-836D-4038-883A-64DB368DD3C0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

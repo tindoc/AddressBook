@@ -11,7 +11,7 @@ namespace SQLDAL
     /// <summary>
     /// 数据访问类：User
     /// </summary>
-    public partial class User
+    public partial class User:IDAL.IUser
     {
         public User() { }
 

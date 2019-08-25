@@ -90,6 +90,30 @@ Access 的数据库备份就是 .mdb 文件的移动
 
 **注意：**由于没有修改 表现层 代码，所以在 数据库备份和恢复 的窗体中设置了 OpenFileDialog 和 SaveFileDIalog 的筛选字符串不是很符合，导致备份的文件后缀为 .bak 而不是 .mdb
 
+### Task 15
+
+#### C# 使用反射动态创建类型的实例
+
+1. 基础
+
+    一个解决方案中多个项目，其中类库项目会生成 .dll 文件，窗体项目会生成 .exe 文件，这两个文件都是 “程序集”。
+
+    如果窗体项目 A 需要引用类库项目 B，生成时会自动将 B 类库生成的 B.dll 文件复制到 A 项目的 bin/debug/ 文件夹下，如果B类库项目还依赖于类库项目 C ，则会自动将 C.dll 复制到 A 项目的 bin/debug/ 文件夹下
+
+2. 使用
+
+    ```c#
+    using System.Reflection;
+
+    Assembly.Load(“程序集名称”).CreateInstance("命名空间.类名称");
+    ```
+
+3. 解释
+
+    使用反射动态创建类型的实例即后期绑定，属于动态编程，[官方介绍](https://docs.microsoft.com/zh-cn/dotnet/framework/reflection-and-codedom/)
+
+**注意：**如果出现 “依赖项” 什么的出错，请在 WinForm 项目中添加 AccessDAL 和 SQLDAL 的引用，以在项目 bin/debug/ 文件夹中生成 AccessDAL.dll 和 SQLDAL.dll 动态链接库
+
 # 待优化
 
 - 每次写数据库的连接很麻烦 => 实现 DAL 类
@@ -98,8 +122,6 @@ Access 的数据库备份就是 .mdb 文件的移动
 - FormContactAdd 和 FormContactDetail 相同函数 FillGroup 和 Check，提取
 - 使用 SqlDbHelper 类时创建参数麻烦，而且针对特定数据库
 - 任务13 函数 GetModel 判断 datatable 对应的单元格非空很麻烦 => 函数 CheckDataTableCell
-
-
 
 # 书籍勘误
 

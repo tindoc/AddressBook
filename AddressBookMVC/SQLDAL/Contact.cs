@@ -11,7 +11,7 @@ namespace SQLDAL
     /// <summary>
     /// 数据访问类：Contact
     /// </summary>
-    public  class Contact
+    public  class Contact:IDAL.IContact
     {
         public Contact() { }
 
