@@ -1,39 +1,77 @@
-# AddressBook
-本项目是根据周宏斌、温一军主编的《C#数据库应用程序开发技术与案例教程》实现的程序
+# AddressBook 通讯录
+> 本项目是根据周宏斌、温一军主编的《C#数据库应用程序开发技术与案例教程》实现的程序
+>
+> 官方教辅资源 [在此](http://www.hzcourse.com/web/teachRes/detail/3328/209) ，需要登录（不想注册）
+>
+> CSDN 有付费资源（没有积分）
 
-官方教辅资源 [在此](http://www.hzcourse.com/web/teachRes/detail/3328/209) ，需要登录（不想注册）
+## 项目说明
 
-CSDN 有付费资源（没有积分）
+### 主要功能
 
-## 项目结构说明
+- 用户登录：只支持在数据库中初始化用户
+- 联系人分组管理：增删改查联系人分组信息
+- 联系人管理：增删改查联系人信息
+- 用户密码修改：修改自己的密码
+- 数据库备份与恢复：如果需要使用 SQL Server 数据库的备份和恢复需要部署数据库环境在本地
+- 系统帮助：显示产品名称、版本号、版权、公司名称等
 
-[AddressBook](./AddressBook) 是实现任务12之后的状态
+### 文件结构
+
+> 以 AddressBookMVC 项目为例
+
+Model 类库项目：针对使用的 3 张表建立各个类文件，里面设置各表字段的属性
+
+BLL 类库项目：实现业务功能的函数，但并不真正实现数据库访问等，通过调用 IDAL 的 xxxDAL 类来实现（大致是按功能来划分类文件的，有 4 个）
+
+xxxDAL 类库项目：实现真正的数据库访问，而且都实现了 IDAL 类库项目的接口（与 BLL 对应）
+
+IDAL 类库项目：接口的定义（与 xxxDAL 对应）
+
+DALFactory 类库项目：决定调用哪个数据库的工厂模式（与 BLL 对应）
+
+Common 类库项目：通用函数的集合
+
+WinForm 窗体项目：表示层
+
+### 其他
+
+数据库支持 SQL Server 和 Access ，只需在 WinFrom/App.config 文件中配置按提示配置即可
+
+## Repo 说明
 
 [AddressBookSetup](./AddressBookSetup) 是任务9实现的安装程序项目，编译后可以移动到用户电脑安装使用
 
-[AddressBookMVC](./AddressBookMVC) 是任务13实现的 MVC 架构的重构项目
+[AddressBook](./AddressBook) 是实现任务12之后的状态，即未使用MVC架构的可使用程序（只支持 SQL Server 数据库）
 
-[SqlServerSetting](./SqlServerSetting) 是SQL Server 数据库环境的恢复脚本，脚本中包含了登录的用户名和密码(同为 admin)和任务11的存储过程，但缺少外键。可根据 [SqlServerSetting/readme.md](./SqlServerSetting/readme.md) 提示配置数据库环境
+[AddressBookMVC](./AddressBookMVC) 是任务13实现的对 AddressBook 项目进行 MVC 架构的重构项目
+
+[SqlServerSetting](./SqlServerSetting) 是SQL Server 数据库环境的恢复脚本，脚本中包含了登录的用户名和密码(同为 admin)和任务11的存储过程，**但缺少外键(可能在更新通讯录分组时无法更新通讯录里的 GroupId 问题，请自行添加外键，Contact.GroupId = ContactGroup.Id)**。可根据 [SqlServerSetting/readme.md](./SqlServerSetting/readme.md) 提示配置数据库环境。
 
 [assets](./assets) 为存放本说明文件使用的图片的文件夹
 
 另：
 
-可以使用 GitHub 上 [本项目](https://github.com/Tindoc/AddressBook) 的 Tags 来下载或克隆到某一特定时期，现提供 
+可以使用 GitHub 上 [本项目](https://github.com/Tindoc/AddressBook) 的 Tags 来下载或克隆到某一特定时期，Tags 如下
 
-- “基础篇”：完成基础篇之后的状态
-- “进阶篇”：完成进阶篇之后的状态
-- “BeforeDbHelper”：实现任务11后的状态
+- “基础篇”：完成基础篇之后的状态，使用的是格式化字符串书写 sql 语句
+- “BeforeDbHelper”：实现任务11后的状态，即在 “Tags:基础篇” 基础上使用参数化 sql 语句
+- “进阶篇”：完成进阶篇之后的状态，即在 “Tags:BeforeDbHelper” 基础上使用数据库操作类操作数据库
+- “MVC”：实现任务15后的状态，即在 “Tags:进阶篇” 上使用 MVC 重构以及使用抽象工厂访问数据库的项目
+
+> 推荐使用后三个
+
+
 
 # 任务记录
 
-> 记录一些任务过程中重要或者疑惑的地方
+> 记录按照书中做任务过程中重要或者疑惑的地方
 
 ### Task 2
 
 ToolStrip 工具栏上添加的是 button ，根据控件名称 tsbtnxxxx 得知
 
-可以使用类内 static 成员来保存程序整个运行期间不变的变量，类 DBHelper 就是如此
+可以使用 public 类的 static 成员来保存程序整个运行期间不变的变量，类 DBHelper 就是如此
 
 ### Task 5
 
@@ -88,7 +126,7 @@ Access 不支持存储过程，所以书在 AccessDAL 类中函数不传 Command
 
 Access 的数据库备份就是 .mdb 文件的移动
 
-**注意：**由于没有修改 表现层 代码，所以在 数据库备份和恢复 的窗体中设置了 OpenFileDialog 和 SaveFileDIalog 的筛选字符串不是很符合，导致备份的文件后缀为 .bak 而不是 .mdb
+**注意：**由于没有修改 表示层 代码，所以在 数据库备份和恢复 的窗体中设置的 OpenFileDialog 和 SaveFileDIalog 的筛选字符串不是很符合，导致备份的文件后缀为 .bak 而不是 .mdb
 
 ### Task 15
 
@@ -116,12 +154,7 @@ Access 的数据库备份就是 .mdb 文件的移动
 
 # 待优化
 
-- 每次写数据库的连接很麻烦 => 实现 DAL 类
-- 写弹出消息框也较为麻烦
-- 将是否选中 DataGridView 中行的判断封装
-- FormContactAdd 和 FormContactDetail 相同函数 FillGroup 和 Check，提取
 - 使用 SqlDbHelper 类时创建参数麻烦，而且针对特定数据库
-- 任务13 函数 GetModel 判断 datatable 对应的单元格非空很麻烦 => 函数 CheckDataTableCell
 
 # 书籍勘误
 
